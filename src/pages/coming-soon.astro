@@ -1,0 +1,88 @@
+---
+// Where every link without a real destination goes until launch (see COMING_SOON in src/config.ts).
+// noindex and left out of the sitemap.
+import Base from '../layouts/Base.astro';
+import Lloyd from '../components/Lloyd.astro';
+import LloydDialog from '../components/LloydDialog.astro';
+import { SITE } from '../config';
+---
+
+<Base title={`Coming soon — ${SITE.name}`} noindex>
+  <div class="soon dot-grid">
+    <header class="container soon__bar">
+      <a class="soon__brand" href="index.html">
+        <Lloyd mood="hello" size={32} eager />
+        <span>Llama Farm</span>
+      </a>
+    </header>
+
+    <main class="container soon__main">
+      <div class="soon__guide">
+        <Lloyd mood="think" size={96} eager />
+        <LloydDialog text="Still grazing on this one. Check back soon." />
+      </div>
+      <h1 class="h1">Coming <span class="accent">soon.</span></h1>
+      <p class="lead">This page isn't ready yet. Everything else about Llama Farm is on the home page.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="index.html">Back to Llama Farm</a>
+        <a class="btn btn--outline" href="index.html#download">Download</a>
+      </div>
+    </main>
+  </div>
+</Base>
+
+<style>
+  .soon {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .soon__bar {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .soon__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--site-heading);
+    text-decoration: none;
+  }
+
+  .soon__main {
+    flex: 1;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 24px;
+    padding-top: 48px;
+    padding-bottom: 96px;
+    text-align: center;
+  }
+
+  .soon__guide {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 420px;
+    text-align: left;
+  }
+
+  .soon__guide :global(.lloyd-dialog) {
+    flex: 1;
+  }
+
+  .soon .lead {
+    max-width: 520px;
+  }
+
+  .soon .btn-row {
+    justify-content: center;
+  }
+</style>

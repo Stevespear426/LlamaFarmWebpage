@@ -24,6 +24,7 @@ Re-run `npm run images` whenever the social card, its numbers or Lloyd change.
 | `src/components/shots/` | `ConsoleShot`, `NodeStatusShot`, `TerminalShot`, `ToolValueShot` |
 | `src/components/sections/` | The twelve page parts, in page order in `src/pages/index.astro` |
 | `src/pages/social.astro` | The 1200×630 share card (noindex, not in the sitemap) |
+| `src/pages/coming-soon.astro` | Where every not-yet-live link goes (noindex, not in the sitemap) |
 | `public/lloyd/` | Lloyd's three sprites, generated from `GuideSprites.kt` in the Llama repo. Don't redraw them by hand. |
 | `public/badges/` | Official App Store (SVG) and Google Play (PNG) badge artwork |
 
@@ -31,7 +32,9 @@ The Console shot follows the app's own width breakpoints as container queries, s
 
 ## Placeholders
 
-Each one is kept verbatim in brackets. Search the repo for `[` to find them. All except `[APP-STORE-ID]` are set in `src/config.ts`.
+Each one is kept verbatim in brackets. Search the repo for `[` to find them. They're all set in `src/config.ts`.
+
+Until a link's real destination exists, its entry in `URLS` points at `coming-soon.html` (`src/pages/coming-soon.astro`, noindex), with the placeholder it stands in for noted in a comment beside it. To go live, replace `COMING_SOON` with the real URL. Text placeholders (version, prices, domain) still show in brackets.
 
 | Placeholder | Where it shows | Fill with |
 | --- | --- | --- |

@@ -11,36 +11,39 @@ export const SITE = {
 };
 
 export const RELEASE = {
-  version: '[VERSION]',
-  minMacos: '[MIN MACOS]',
-  minWindows: '[MIN WINDOWS]',
+  version: COMING_SOON, // [VERSION]
+  minMacos: COMING_SOON, // [MIN MACOS]
+  minWindows: COMING_SOON, // [MIN WINDOWS]
 };
 
 export const PRICING = {
-  teamPrice: '[YOUR PRICE]',
-  securityFeatures: '[YOUR SECURITY FEATURES]',
-  sla: '[YOUR SLA]',
+  teamPrice: COMING_SOON, // [YOUR PRICE]
+  securityFeatures: COMING_SOON, // [YOUR SECURITY FEATURES]
+  sla: COMING_SOON, // [YOUR SLA]
 };
 
+// Links whose destination doesn't exist yet point here. The placeholder each one replaces is noted beside it.
+const COMING_SOON = 'coming-soon.html';
+
 export const URLS = {
-  docs: '[DOCS URL]',
-  changelog: '[CHANGELOG URL]',
-  demo: '[DEMO URL]',
-  methodology: '[METHODOLOGY URL]',
-  sales: '[SALES URL]',
-  adminGuide: '[ADMIN GUIDE URL]',
-  trial: '[TRIAL URL]',
-  requirements: '[REQUIREMENTS URL]',
-  mcpTools: '[MCP TOOLS URL]',
-  status: '[STATUS URL]',
-  about: '[ABOUT URL]',
-  privacy: '[PRIVACY URL]',
-  contact: '[CONTACT URL]',
-  macDmg: '[MAC DMG URL]',
-  windowsMsi: '[WINDOWS MSI URL]',
-  linuxDeb: '[LINUX DEB URL]',
-  appStore: 'https://apps.apple.com/app/id[APP-STORE-ID]',
-  // The Play listing for com.stingers.llama isn't live yet; swap in the real URL below when it is.
-  googlePlay: '[GOOGLE PLAY URL]',
+  docs: COMING_SOON, // [DOCS URL]
+  changelog: COMING_SOON, // [CHANGELOG URL]
+  demo: COMING_SOON, // [DEMO URL]
+  methodology: COMING_SOON, // [METHODOLOGY URL]
+  sales: COMING_SOON, // [SALES URL]
+  adminGuide: COMING_SOON, // [ADMIN GUIDE URL]
+  trial: COMING_SOON, // [TRIAL URL]
+  requirements: COMING_SOON, // [REQUIREMENTS URL]
+  mcpTools: COMING_SOON, // [MCP TOOLS URL]
+  status: COMING_SOON, // [STATUS URL]
+  about: COMING_SOON, // [ABOUT URL]
+  privacy: COMING_SOON, // [PRIVACY URL]
+  contact: COMING_SOON, // [CONTACT URL]
+  macDmg: COMING_SOON, // [MAC DMG URL]
+  windowsMsi: COMING_SOON, // [WINDOWS MSI URL]
+  linuxDeb: COMING_SOON, // [LINUX DEB URL]
+  appStore: COMING_SOON, // https://apps.apple.com/app/id[APP-STORE-ID]
+  // The Play listing for com.stingers.llama isn't live yet; swap in googlePlayLive when it is.
+  googlePlay: COMING_SOON, // [GOOGLE PLAY URL]
   googlePlayLive: 'https://play.google.com/store/apps/details?id=com.stingers.llama',
 };
