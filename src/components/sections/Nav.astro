@@ -1,0 +1,98 @@
+---
+import Lloyd from '../Lloyd.astro';
+import Icon from '../Icon.astro';
+import { URLS } from '../../config';
+
+const links = [
+  { label: 'Product', href: '#product' },
+  { label: 'How it works', href: '#how' },
+  { label: 'Savings', href: '#savings' },
+  { label: 'For teams', href: '#teams' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Docs', href: URLS.docs },
+];
+---
+
+<header class="nav">
+  <div class="container nav__row">
+    <a class="nav__brand" href="#top">
+      <Lloyd mood="hello" size={32} eager />
+      <span>Llama Farm</span>
+    </a>
+    <nav class="nav__links" aria-label="Main">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href="#download">
+      <Icon name="download" />
+      Download
+    </a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--site-rule);
+    background: var(--site-bg);
+  }
+
+  .nav__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 24px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--site-heading);
+    text-decoration: none;
+  }
+
+  .nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 4px;
+    margin-left: auto;
+  }
+
+  .nav__links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--site-link);
+    text-decoration: none;
+  }
+
+  .nav__links a:hover {
+    color: var(--site-heading);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav__cta {
+    flex: none;
+  }
+
+  /* Phones: brand and Download on the first line, the links on a second. */
+  @media (max-width: 900px) {
+    .nav__links {
+      order: 3;
+      width: 100%;
+      margin-left: -10px;
+    }
+
+    .nav__cta {
+      margin-left: auto;
+    }
+  }
+</style>

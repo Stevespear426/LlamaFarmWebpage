@@ -1,0 +1,30 @@
+---
+import NodeStatusShot from '../shots/NodeStatusShot.astro';
+---
+
+<section class="section" aria-labelledby="device-title">
+  <div class="container split device">
+    <div class="device__shot">
+      <NodeStatusShot />
+    </div>
+    <div class="section-head device__copy">
+      <p class="eyebrow">Every device is a node</p>
+      <h2 id="device-title" class="h2">That drawer of old phones? It's a herd.</h2>
+      <p class="lead">
+        Leave a phone plugged in on a shelf and it takes the jobs that fit it, using Apple Foundation Models or Gemini Nano
+        when the device has them, or a right-sized model downloaded on demand.
+      </p>
+      <p class="lead">
+        The screen stays readable from across the room: connected or not, what it's working on, and how much it saved
+        today.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* On phones the copy stacks above the phone. */
+  .device {
+    flex-wrap: wrap-reverse;
+  }
+</style>

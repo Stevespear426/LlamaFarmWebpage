@@ -1,0 +1,125 @@
+---
+import Lloyd from '../Lloyd.astro';
+import { URLS } from '../../config';
+
+const columns = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Downloads', href: '#download' },
+      { label: 'Pricing', href: '#pricing' },
+      { label: 'Changelog', href: URLS.changelog },
+    ],
+  },
+  {
+    title: 'Developers',
+    links: [
+      { label: 'Docs', href: URLS.docs },
+      { label: 'MCP tools', href: URLS.mcpTools },
+      { label: 'Status', href: URLS.status },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: URLS.about },
+      { label: 'Privacy', href: URLS.privacy },
+      { label: 'Contact', href: URLS.contact },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container footer__row">
+    <div class="footer__brand">
+      <span class="footer__name"><Lloyd mood="hello" size={32} />Llama Farm</span>
+      <p class="body">Extra compute for your AI agents.</p>
+    </div>
+    <nav class="footer__cols" aria-label="Footer">
+      {
+        columns.map((col) => (
+          <div>
+            <p class="footer__title">{col.title}</p>
+            <ul>
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="container">
+    <p class="caption footer__legal">© 2026 Llama Farm</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 64px 0 40px;
+    border-top: 1px solid var(--site-rule);
+  }
+
+  .footer__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .footer__name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--site-heading);
+  }
+
+  .footer__brand .body {
+    margin-top: 10px;
+  }
+
+  .footer__cols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 64px;
+  }
+
+  .footer__title {
+    font: 500 13px/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-text-3);
+  }
+
+  .footer__cols ul {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer__cols a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--site-link);
+    text-decoration: none;
+  }
+
+  .footer__cols a:hover {
+    color: var(--site-heading);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .footer__legal {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--site-rule);
+  }
+</style>

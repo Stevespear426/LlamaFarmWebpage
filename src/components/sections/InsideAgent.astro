@@ -1,0 +1,76 @@
+---
+import Icon from '../Icon.astro';
+import TerminalShot from '../shots/TerminalShot.astro';
+
+const features = [
+  { icon: 'code', title: 'Exact code lookup', body: 'Source, definitions, references, callers and impact.' },
+  {
+    icon: 'filter',
+    title: 'Build and test output, filtered',
+    body: 'Long Bash output arrives as the lines that matter, with the full log saved.',
+  },
+  { icon: 'search', title: 'Search by meaning', body: 'A fresh semantic and keyword index of every repo you open.' },
+  { icon: 'doc', title: 'Summaries and drafts', body: 'Large files, docs, diffs, commit messages and PR descriptions.' },
+] as const;
+---
+
+<section id="product" class="section" aria-labelledby="product-title">
+  <div class="container split">
+    <div class="section-head">
+      <p class="eyebrow">Inside your agent</p>
+      <h2 id="product-title" class="h2">Your agent reads less. It knows more.</h2>
+      <p class="lead">
+        Your agent asks the farm instead of grepping and reading whole files. One call returns a function's exact source,
+        and a 4,000-line test run comes back as the one failure that matters.
+      </p>
+      <ul class="features">
+        {
+          features.map((f) => (
+            <li>
+              <span class="icon-tile">
+                <Icon name={f.icon} />
+              </span>
+              <span>
+                <strong>{f.title}</strong>
+                <span class="body">{f.body}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <TerminalShot />
+  </div>
+</section>
+
+<style>
+  /* The terminal gets the wider column so its longest lines fit without scrolling on desktop. */
+  .split > :global(.terminal-figure) {
+    flex: 1.5 1 480px;
+  }
+
+  .features {
+    display: grid;
+    gap: 18px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .features li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .features strong {
+    display: block;
+    color: var(--site-heading);
+    font-weight: 600;
+  }
+
+  .features .body {
+    display: block;
+    font-size: 15px;
+  }
+</style>

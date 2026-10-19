@@ -1,0 +1,141 @@
+---
+import Icon from '../Icon.astro';
+import { PRICING, URLS } from '../../config';
+
+const plans = [
+  {
+    name: 'Personal',
+    price: '$0',
+    unit: '',
+    features: ['Unlimited nodes you own', 'All farm tools', 'Claude Code, Codex, Gemini CLI', 'Tool value ledger'],
+    cta: { label: 'Download', href: '#download', primary: false },
+  },
+  {
+    name: 'Team',
+    price: PRICING.teamPrice,
+    unit: '/ dev / month',
+    popular: true,
+    features: ['Everything in Personal', 'Central Fleet overflow', 'Remote Dispatch keys', 'Managed agent setup'],
+    cta: { label: 'Start a trial', href: URLS.trial, primary: true },
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    unit: '',
+    features: ['On-prem Central Fleet', PRICING.securityFeatures, 'Priority support', PRICING.sla],
+    cta: { label: 'Contact sales', href: URLS.sales, primary: false },
+  },
+];
+---
+
+<section id="pricing" class="section" aria-labelledby="pricing-title">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Pricing</p>
+      <h2 id="pricing-title" class="h2">Free for your own farm.</h2>
+    </div>
+    <ul class="card-grid plans">
+      {
+        plans.map((plan) => (
+          <li class:list={['card', 'plan', { 'plan--popular': plan.popular }]}>
+            <div class="plan__head">
+              <h3 class="h3">{plan.name}</h3>
+              {plan.popular && <span class="plan__pill">Popular</span>}
+            </div>
+            <p class="plan__price">
+              <span class="plan__amount">{plan.price}</span>
+              {plan.unit && <span class="plan__unit">{plan.unit}</span>}
+            </p>
+            <ul class="plan__features">
+              {plan.features.map((f) => (
+                <li>
+                  <Icon name="check" size={18} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a class:list={['btn', plan.cta.primary ? 'btn--primary' : 'btn--outline']} href={plan.cta.href}>
+              {plan.cta.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .plans {
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .plan--popular {
+    background: var(--site-card-strong);
+    border: 2px solid var(--accent);
+  }
+
+  .plan__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .plan__pill {
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font: 500 12px/1.2 var(--font-mono);
+  }
+
+  .plan__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 10px;
+  }
+
+  .plan__amount {
+    font: 800 44px/1.05 var(--font-display);
+    letter-spacing: -0.03em;
+    color: var(--site-heading);
+    overflow-wrap: anywhere;
+  }
+
+  .plan__unit {
+    font: 400 13px/1.4 var(--font-mono);
+    color: var(--site-text-3);
+  }
+
+  .plan__features {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex: 1;
+    align-content: start;
+    color: var(--site-text-2);
+  }
+
+  .plan__features li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .plan__features :global(svg) {
+    flex: none;
+    margin-top: 4px;
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,51 @@
+---
+// common/LloydDialog.kt: square corners, a 3px border, a hard offset shadow (4px, or 3 on
+// phones) and the LLOYD name tag over the top-left corner.
+interface Props {
+  text: string;
+  compact?: boolean;
+}
+const { text, compact = false } = Astro.props;
+---
+
+<div class:list={['lloyd-dialog', { 'lloyd-dialog--compact': compact }]}>
+  <div class="lloyd-dialog__box"><p>{text}</p></div>
+  <span class="lloyd-dialog__tag" aria-hidden="true">LLOYD</span>
+</div>
+
+<style>
+  .lloyd-dialog {
+    --shadow: 4px;
+    position: relative;
+    padding: 10px var(--shadow) var(--shadow) 0;
+    min-width: 0;
+  }
+
+  .lloyd-dialog--compact {
+    --shadow: 3px;
+  }
+
+  .lloyd-dialog__box {
+    background: var(--dialog);
+    border: 3px solid var(--dialog-ink);
+    box-shadow: var(--shadow) var(--shadow) 0 var(--dialog-ink);
+    padding: 16px 14px 12px;
+    color: var(--app-text);
+    font: 400 15px/21px var(--font-sans);
+  }
+
+  .lloyd-dialog--compact .lloyd-dialog__box {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .lloyd-dialog__tag {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    padding: 2px 6px;
+    background: var(--app-accent);
+    color: #fff;
+    font: 400 13px/1.2 var(--font-pixel);
+  }
+</style>

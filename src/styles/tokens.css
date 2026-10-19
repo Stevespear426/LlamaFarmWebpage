@@ -1,0 +1,73 @@
+/* Two token sets: the dark marketing palette for the page, and the app's light palette
+   (LightFarmColors in ui/theme/FarmColors.kt), used only inside product shots. */
+
+:root {
+  /* Site palette (dark page) */
+  --site-bg: #0b1d19;
+  --site-band: #0e2420;
+  --site-card: #0f2723;
+  --site-card-strong: #12342d;
+  --site-icon-tile: #143a32;
+  --site-border: #1f4239;
+  --site-rule: #1c3a33;
+  --site-border-strong: #2e5a50;
+  --site-text: #e8f1ed;
+  --site-heading: #ffffff;
+  --site-text-2: #a9c2b9;
+  --site-text-3: #8faaa0;
+  --site-link: #cfe7de;
+  --accent: #2fb394;
+  --on-accent: #08201a;
+  --gold: #f2c14e;
+  --on-gold: #241a05;
+  --terminal-bg: #070f0d;
+  --terminal-border: #24463e;
+
+  /* App palette (product shots only) */
+  --app-bg: #f3f4f1;
+  --app-surface: #ffffff;
+  --app-surface2: #f5f7f4;
+  --app-surface3: #e4e6e2;
+  --app-border: #e3e5e8;
+  --app-rule: #eef0f2;
+  --app-border-strong: #c9cdd4;
+  --app-text: #16181d;
+  --app-text2: #4a5160;
+  --app-text3: #5b6170;
+  --app-grid: #e9ebe7;
+  --app-accent: #0e6b5c;
+  --app-accent-soft: #e2f0ea;
+  --app-accent-soft-fg: #0a5546;
+  --app-blue: #1f5fd1;
+  --app-blue-soft: #e3ebfa;
+  --app-blue-soft-fg: #1a4aa6;
+  --app-blue-track: #dce4f5;
+  --app-blue-light: #8fb0ea;
+  --app-green: #1f9d6b;
+  --app-green-ring: #d9f2e7;
+  /* The app's green (#1f9d6b) is 3.45:1 on white; small text in shots uses this darker step of it for AA. */
+  --app-green-text: #1a865b;
+  --app-orange-soft-fg: #933211;
+  --app-gold-soft: #fbf1d6;
+  --app-gold-soft-fg: #6b4e06;
+  --series-desktop: #2a78d6;
+  --series-ios: #eb6834;
+  --series-android: #1baf7a;
+  --dialog: #fffdf7;
+  --dialog-ink: #3b2a20;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-pixel: 'Silkscreen', var(--font-mono);
+
+  /* Layout */
+  --content-max: 1240px;
+  --gutter: 24px;
+  --section-pad: 112px;
+  --radius-card: 20px;
+  --radius-button: 10px;
+
+  --dot-grid: radial-gradient(rgba(47, 179, 148, 0.16) 1px, transparent 1px) 0 0 / 24px 24px, var(--site-bg);
+}

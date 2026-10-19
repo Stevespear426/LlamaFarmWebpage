@@ -1,0 +1,143 @@
+---
+// A Claude Code session using the farm. The [llama-farm …] markers follow
+// mcpBridge/…/Hooks.kt word for word, shortened only with "…".
+import data from '../../data/sample.json';
+
+const t = data.terminal;
+const label = `Claude Code session: the farm looks up NodeClient.retry and filters ${t.gradleLinesTotal.toLocaleString('en-US')} lines of Gradle output down to the failing test, and the fix passes.`;
+
+type Part = { text: string; cls?: string };
+type Line = Part[];
+const call = (tool: string, args: string): Line => [
+  { text: '⏺ ', cls: 'dot' },
+  { text: tool, cls: 'b' },
+  { text: args },
+];
+const result = (text: string, cls = 'res', first = false): Line => [{ text: first ? '  ⎿  ' : '     ', cls: 'res' }, { text, cls }];
+
+const lines: Line[] = [
+  [{ text: '> ', cls: 'prompt' }, { text: 'fix the flaky retry test in NodeClient', cls: 'b' }],
+  [],
+  call('llama-farm - code_lookup (MCP)', '(mode: "source", names: ["NodeClient.retry"])'),
+  result('NodeClient.kt:88–131 · fun <T> retry(maxRetries: Int, block: suspend () -> T)', 'res', true),
+  [],
+  call('Bash', '(./gradlew :shared:jvmTest --tests NodeClientTest)'),
+  result('[llama-farm filtered this output to save tokens: 4118 lines,', 'marker', true),
+  result('212406 characters. The full output, stdout and stderr, is saved', 'marker'),
+  result('at …/bash-0193.log; read it with offset/limit if you need more.]', 'marker'),
+  result('NodeClientTest > retriesOn503 FAILED', 'fail'),
+  result('expected:<3> but was:<4> at NodeClientTest.kt:57', 'fail'),
+  [],
+  [{ text: '⏺ ', cls: 'say' }, { text: 'The loop counts the first attempt as a retry. Fixing the bound.' }],
+  call('Update', '(NodeClient.kt)'),
+  result('-  while (attempt <= maxRetries) {', 'fail', true),
+  result('+  while (attempt < maxRetries) {', 'add'),
+  [],
+  call('Bash', '(./gradlew :shared:jvmTest)'),
+  result('[llama-farm filtered this output to save tokens: 3961 lines, …]', 'marker', true),
+  result('BUILD SUCCESSFUL · 212 tests passed', 'add'),
+];
+---
+
+<figure class="terminal-figure">
+  <div class="shot terminal" role="img" aria-label={label}>
+    <div aria-hidden="true">
+      <div class="bar">
+        <span class="lights"><i></i><i></i><i></i></span>
+        <span>{t.title}</span>
+      </div>
+      <pre class="body">{lines.map((line) => <span class="line">{line.map((p) => <span class={p.cls}>{p.text}</span>)}{'\n'}</span>)}</pre>
+    </div>
+  </div>
+  <figcaption class="caption">
+    {t.gradleLinesTotal.toLocaleString('en-US')} lines of Gradle output, and Claude read {t.linesRead} of them.
+  </figcaption>
+</figure>
+
+<style>
+  .terminal-figure {
+    margin: 0;
+    display: grid;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .terminal {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 14px;
+    overflow: hidden;
+    color: var(--site-text);
+  }
+
+  .bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    border-bottom: 1px solid var(--terminal-border);
+    font: 400 12px/1 var(--font-mono);
+    color: var(--site-text-3);
+  }
+
+  .lights {
+    position: absolute;
+    left: 14px;
+    display: flex;
+    gap: 7px;
+  }
+
+  .lights i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--site-border-strong);
+  }
+
+  .body {
+    margin: 0;
+    padding: 18px 20px 20px;
+    font: 400 13px/1.75 var(--font-mono);
+    white-space: pre;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .b {
+    font-weight: 500;
+    color: var(--site-heading);
+  }
+
+  .prompt {
+    color: var(--site-text-3);
+  }
+
+  .dot {
+    color: var(--accent);
+  }
+
+  .say {
+    color: var(--site-heading);
+  }
+
+  .res {
+    color: var(--site-text-3);
+  }
+
+  .marker {
+    color: var(--gold);
+  }
+
+  .fail {
+    color: #ff9b85;
+  }
+
+  .add {
+    color: #6ee7b7;
+  }
+
+  .caption {
+    text-align: center;
+  }
+</style>

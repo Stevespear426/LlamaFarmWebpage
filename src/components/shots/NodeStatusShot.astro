@@ -1,0 +1,337 @@
+---
+// nodestatus/NodeStatusScreen.kt on an iPhone: no header on phones, and the screen is
+// clipped at about 640px, since it scrolls in the app.
+import Lloyd from '../Lloyd.astro';
+import LloydDialog from '../LloydDialog.astro';
+import data from '../../data/sample.json';
+
+const n = data.nodeStatus;
+const label = `Llama Farm on ${n.title}: ${n.connection.title.toLowerCase()}, working on "${n.job.title}" for Claude Code, ${n.tiles[0].value} requests today.`;
+---
+
+<div class="shot phone-shot" role="img" aria-label={label}>
+  <div class="phone" aria-hidden="true">
+    <div class="screen">
+      <span class="island"></span>
+      <div class="content">
+        <div>
+          <p class="eyebrow">LLAMA FARM · NODE</p>
+          <p class="title">{n.title}</p>
+          <p class="platform">
+            <span class="t-small t-2">{n.platform}</span>
+            <span class="tier">{n.tier}</span>
+          </p>
+        </div>
+
+        <div class="guide">
+          <Lloyd mood="think" size={96} />
+          <LloydDialog text={n.lloyd} compact />
+        </div>
+
+        <div class="card connection">
+          <span class="ring"><i></i></span>
+          <span>
+            <span class="connection__title">{n.connection.title}</span>
+            <span class="detail">{n.connection.detail}</span>
+          </span>
+        </div>
+
+        <div class="job">
+          <div class="job__head">
+            <span class="eyebrow">CURRENT JOB</span>
+            <span class="working">Working</span>
+          </div>
+          <div>
+            <p class="card-title">{n.job.title}</p>
+            <p class="detail">{n.job.detail}</p>
+          </div>
+          <div class="progress"><i style={`width:${n.job.progress * 100}%`}></i></div>
+        </div>
+
+        <div class="tiles">
+          {
+            n.tiles.map((t) => (
+              <div class="card tile">
+                <span class="eyebrow">{t.label.toUpperCase()}</span>
+                <span class="tile__value">{t.value}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="card capability">
+          <p class="eyebrow">CAPABILITY</p>
+          {
+            n.capability.map((line) => (
+              <div class="cap-row">
+                <span class="t-2">{line.label}</span>
+                <span class="cap-row__value">{line.value}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="buttons">
+          <span class="secondary-btn">Settings</span>
+          <span class="secondary-btn secondary-btn--warn">Disconnect</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .phone-shot {
+    display: flex;
+    justify-content: center;
+    color: var(--app-text);
+    font-family: var(--font-sans);
+    text-align: left;
+  }
+
+  .phone {
+    width: 320px;
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 52px;
+    background: #10100f;
+    box-shadow:
+      0 0 0 1px var(--site-border-strong),
+      0 30px 60px -20px rgba(0, 0, 0, 0.6);
+  }
+
+  .screen {
+    position: relative;
+    height: 640px;
+    overflow: hidden;
+    border-radius: 42px;
+    background: var(--app-bg);
+  }
+
+  .island {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    width: 96px;
+    height: 28px;
+    margin-left: -48px;
+    border-radius: 999px;
+    background: #10100f;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 62px 16px 24px;
+  }
+
+  .eyebrow {
+    font: 500 10px/1.3 var(--font-mono);
+    letter-spacing: 0.06em;
+    color: var(--app-text3);
+  }
+
+  .title {
+    margin-top: 2px;
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 600;
+  }
+
+  .platform {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .t-small {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .t-2 {
+    color: var(--app-text2);
+  }
+
+  .tier {
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--app-blue-soft);
+    color: var(--app-blue-soft-fg);
+    font-size: 11px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+
+  .guide {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .guide :global(.lloyd-dialog) {
+    flex: 1;
+  }
+
+  .card {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 12px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+
+  .detail {
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--app-text2);
+  }
+
+  /* ConnectionCard.kt */
+  .connection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .ring {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background: var(--app-green-ring);
+    flex: none;
+  }
+
+  .ring i {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--app-green);
+  }
+
+  .connection__title {
+    display: block;
+    font-size: 17px;
+    line-height: 20px;
+    font-weight: 600;
+  }
+
+  /* CurrentJobCard.kt */
+  .job {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--app-surface);
+    border: 1px solid var(--app-blue-light);
+  }
+
+  .job__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .working {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--app-blue-soft);
+    color: var(--app-blue-soft-fg);
+    font-size: 11px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+
+  .progress {
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--app-blue-track);
+  }
+
+  .progress i {
+    display: block;
+    height: 100%;
+    background: var(--app-blue);
+  }
+
+  /* NodeStatTile.kt */
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px;
+  }
+
+  .tile__value {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  /* CapabilityCard.kt */
+  .capability {
+    padding: 12px 14px;
+  }
+
+  .capability .eyebrow {
+    padding-bottom: 4px;
+  }
+
+  .cap-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .cap-row + .cap-row {
+    border-top: 1px solid var(--app-rule);
+  }
+
+  .cap-row__value {
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .secondary-btn {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    min-height: 44px;
+    border: 1px solid var(--app-border-strong);
+    border-radius: 8px;
+    background: var(--app-surface);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .secondary-btn--warn {
+    color: var(--app-orange-soft-fg);
+  }
+</style>

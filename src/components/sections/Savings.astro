@@ -1,0 +1,19 @@
+---
+import ToolValueShot from '../shots/ToolValueShot.astro';
+import { URLS } from '../../config';
+---
+
+<section id="savings" class="section dot-grid" aria-labelledby="savings-title">
+  <div class="container split">
+    <div class="section-head">
+      <p class="eyebrow">Visible savings</p>
+      <h2 id="savings-title" class="h2">Every tool earns its place, or you'll see it.</h2>
+      <p class="lead">
+        Llama Farm reads each agent's own session logs and puts every farm tool on the ledger: what it saved, what its
+        results added to the context, and what carrying its definition cost. You see the net.
+      </p>
+      <a class="text-link" href={URLS.methodology}>How we measure →</a>
+    </div>
+    <ToolValueShot />
+  </div>
+</section>

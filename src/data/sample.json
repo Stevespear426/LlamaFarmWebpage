@@ -1,0 +1,107 @@
+{
+  "console": {
+    "farmTag": "Home Cluster",
+    "mcpAgents": 3,
+    "subtitle": "5 devices pooled · desktop, Android & iOS · last sync 0s ago",
+    "lloyd": "Busy day on the farm! The herd took 412 jobs and kept 1.83M tokens off Claude Code, Codex CLI and Gemini CLI.",
+    "statTiles": [
+      { "label": "Total nodes", "value": "5", "caption": "5 online · 0 degraded · 0 offline" },
+      { "label": "Active nodes", "value": "5/5", "caption": "All active nodes healthy" },
+      { "label": "Requests · 24h", "value": "412", "caption": "Across all device types" },
+      { "label": "Avg latency", "value": "0.9 s", "caption": "Across 5 active nodes" },
+      { "label": "Tokens saved · 24h", "value": "1.83M", "caption": "41% of agent cost" }
+    ],
+    "chart": {
+      "yTicks": [0, 20, 40, 60, 80],
+      "windows": [
+        { "label": "10 PM", "desktop": 4, "ios": 2, "android": 1 },
+        { "label": "1 AM", "desktop": 0, "ios": 0, "android": 0 },
+        { "label": "4 AM", "desktop": 0, "ios": 0, "android": 0 },
+        { "label": "7 AM", "desktop": 18, "ios": 9, "android": 4 },
+        { "label": "10 AM", "desktop": 52, "ios": 26, "android": 13 },
+        { "label": "1 PM", "desktop": 61, "ios": 30, "android": 15 },
+        { "label": "4 PM", "desktop": 70, "ios": 33, "android": 16 },
+        { "label": "7 PM", "desktop": 34, "ios": 16, "android": 8 }
+      ]
+    },
+    "share": [
+      { "type": "desktop", "label": "Desktop", "count": 239, "percent": 58 },
+      { "type": "ios", "label": "iOS", "count": 116, "percent": 28 },
+      { "type": "android", "label": "Android", "count": 57, "percent": 14 }
+    ],
+    "nodes": [
+      { "name": "Steve's Mac Studio", "type": "desktop", "detail": "Desktop · heavy tier", "capability": "64 GB · 12-core", "battery": "—", "power": null, "requests": 148, "latency": "0.4 s", "uptime": "6d 4h", "lastSeen": "now" },
+      { "name": "Steve's MacBook Air", "type": "desktop", "detail": "Desktop · standard tier", "capability": "16 GB · 8-core", "battery": "100%", "power": "Charging", "requests": 91, "latency": "0.9 s", "uptime": "6d 4h", "lastSeen": "now" },
+      { "name": "iphone-15-pro-kitchen", "type": "ios", "detail": "iOS · standard tier", "capability": "8 GB · 6-core", "battery": "100%", "power": "Charging", "requests": 84, "latency": "1.1 s", "uptime": "5d 21h", "lastSeen": "now" },
+      { "name": "pixel-8-hallway", "type": "android", "detail": "Android · light tier", "capability": "8 GB · 9-core", "battery": "96%", "power": "Charging", "requests": 57, "latency": "1.4 s", "uptime": "4d 11h", "lastSeen": "now" },
+      { "name": "ipad-air-office", "type": "ios", "detail": "iOS · standard tier", "capability": "8 GB · 8-core", "battery": "100%", "power": "Charging", "requests": 32, "latency": "1.2 s", "uptime": "3d 2h", "lastSeen": "now" }
+    ]
+  },
+  "nodeStatus": {
+    "title": "iPhone 15 Pro",
+    "platform": "iOS node",
+    "tier": "Standard tier",
+    "lloyd": "Claude Code sent me a job. Chewing on it now…",
+    "connection": { "title": "Connected", "detail": "Home Cluster · synced 1s ago · 9 ms" },
+    "job": { "title": "Summarizing a file", "detail": "From Claude Code · Apple Foundation Model", "progress": 0.68 },
+    "tiles": [
+      { "label": "Requests · today", "value": "84" },
+      { "label": "Tokens offloaded", "value": "312K" },
+      { "label": "Avg latency", "value": "1.1 s" },
+      { "label": "Uptime", "value": "5d 21h" }
+    ],
+    "capability": [
+      { "label": "Memory", "value": "8 GB" },
+      { "label": "Chip", "value": "6-core" },
+      { "label": "Power", "value": "Charging · 100%" }
+    ]
+  },
+  "terminal": {
+    "title": "~/code/acme-api — claude",
+    "gradleLinesTotal": 8079,
+    "linesRead": 3
+  },
+  "toolValue": {
+    "periods": ["24 hours", "7 days", "30 days"],
+    "selected": "7 days",
+    "agents": [
+      {
+        "name": "Claude Code",
+        "summary": "38 sessions · net 9.2M",
+        "rows": [
+          { "tool": "filter_log", "calls": "214", "saved": "3.9M", "results": "-96K", "carrying": "-41K", "net": "3.8M" },
+          { "tool": "summarize_file", "calls": "388", "saved": "2.5M", "results": "-140K", "carrying": "-52K", "net": "2.3M" },
+          { "tool": "code_lookup", "calls": "902", "saved": "2.4M", "results": "-310K", "carrying": "-180K", "net": "1.9M" },
+          { "tool": "search_codebase", "calls": "611", "saved": "~1.3M", "results": "-260K", "carrying": "-118K", "net": "922K" },
+          { "tool": "commit_message", "calls": "74", "saved": "412K", "results": "-18K", "carrying": "-22K", "net": "372K" },
+          { "tool": "Server instructions", "calls": "0", "saved": "0", "results": "0", "carrying": "-96K", "net": "-96K" }
+        ]
+      },
+      {
+        "name": "Codex CLI",
+        "summary": "9 sessions · net 1.2M",
+        "rows": [
+          { "tool": "filter_log", "calls": "41", "saved": "760K", "results": "-20K", "carrying": "-9K", "net": "731K" },
+          { "tool": "code_lookup", "calls": "140", "saved": "610K", "results": "-70K", "carrying": "-38K", "net": "502K" },
+          { "tool": "Server instructions", "calls": "0", "saved": "0", "results": "0", "carrying": "-24K", "net": "-24K" }
+        ]
+      },
+      {
+        "name": "Gemini CLI",
+        "summary": "4 sessions · net 438K",
+        "rows": [
+          { "tool": "filter_log", "calls": "22", "saved": "340K", "results": "-9K", "carrying": "-7K", "net": "324K" },
+          { "tool": "code_lookup", "calls": "31", "saved": "150K", "results": "-16K", "carrying": "-9K", "net": "125K" },
+          { "tool": "Server instructions", "calls": "0", "saved": "0", "results": "0", "carrying": "-11K", "net": "-11K" }
+        ]
+      }
+    ]
+  },
+  "social": {
+    "lloyd": "Busy day on the farm! The herd took 412 jobs.",
+    "tokensSaved": "1.83M",
+    "tokensCaption": "41% of agent cost",
+    "activeNodes": "5/5",
+    "avgLatency": "0.9 s"
+  }
+}

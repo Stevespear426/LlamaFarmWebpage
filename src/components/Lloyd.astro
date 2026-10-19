@@ -1,0 +1,20 @@
+---
+// Lloyd's 32×32 sprite, only ever at whole multiples of 32 so his pixels stay crisp. Decorative.
+interface Props {
+  mood: 'hello' | 'happy' | 'think';
+  size: 32 | 64 | 96 | 128;
+  class?: string;
+  eager?: boolean;
+}
+const { mood, size, class: className, eager = false } = Astro.props;
+---
+
+<img
+  class:list={['lloyd', className]}
+  src={`lloyd/lloyd-${mood}.svg`}
+  width={size}
+  height={size}
+  alt=""
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+/>

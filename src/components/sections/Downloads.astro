@@ -1,0 +1,194 @@
+---
+import Lloyd from '../Lloyd.astro';
+import Icon from '../Icon.astro';
+import { RELEASE, URLS } from '../../config';
+
+const computers = [
+  {
+    os: 'mac',
+    icon: 'apple',
+    name: 'macOS',
+    meta: `.dmg · ${RELEASE.version} · ${RELEASE.minMacos}`,
+    cta: 'Download for Mac',
+    href: URLS.macDmg,
+    primary: true,
+  },
+  {
+    os: 'windows',
+    icon: 'windows',
+    name: 'Windows',
+    meta: `.msi · ${RELEASE.version} · ${RELEASE.minWindows}`,
+    cta: 'Download for Windows',
+    href: URLS.windowsMsi,
+    primary: false,
+  },
+  {
+    os: 'linux',
+    icon: 'linux',
+    name: 'Linux',
+    meta: `.deb · ${RELEASE.version} · Debian & Ubuntu`,
+    cta: 'Download for Linux',
+    href: URLS.linuxDeb,
+    primary: false,
+  },
+] as const;
+---
+
+<section id="download" class="section dot-grid" aria-labelledby="download-title">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <Lloyd mood="hello" size={128} />
+      <h2 id="download-title" class="h2">Welcome to the farm.</h2>
+      <p class="lead">
+        Start with the farmhouse on an always-on computer, then add phones and tablets as nodes. Lloyd walks you through
+        setup in about three minutes.
+      </p>
+    </div>
+
+    <div class="group">
+      <h3 class="group__head"><span class="group__eyebrow">Computers</span> Run the MCP server, or join a farm as a node</h3>
+      <ul class="dl-grid">
+        {
+          computers.map((c) => (
+            <li class="card dl" data-os={c.os}>
+              <span class="icon-tile">
+                <Icon name={c.icon} />
+              </span>
+              <span class="dl__name">{c.name}</span>
+              <span class="caption">{c.meta}</span>
+              <a class:list={['btn', c.primary ? 'btn--primary' : 'btn--outline']} href={c.href}>
+                <Icon name="download" />
+                {c.cta}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3 class="group__head"><span class="group__eyebrow">Phones &amp; tablets</span> Join your farm as a node</h3>
+      <ul class="dl-grid dl-grid--two">
+        <li class="card dl" data-os="ios">
+          <span class="icon-tile"><Icon name="phone" /></span>
+          <span class="dl__name">iPhone &amp; iPad</span>
+          <span class="caption">iOS 18.2 or later</span>
+          <a class="badge" href={URLS.appStore}>
+            <img src="badges/app-store.svg" width="150" height="50" alt="Download on the App Store" loading="lazy" />
+          </a>
+        </li>
+        <li class="card dl" data-os="android">
+          <span class="icon-tile"><Icon name="phone" /></span>
+          <span class="dl__name">Android</span>
+          <span class="caption">Android 9 or later</span>
+          <a class="badge badge--play" href={URLS.googlePlay}>
+            <img src="badges/google-play.png" width="168" height="65" alt="Get it on Google Play" loading="lazy" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <p class="footnote caption">
+      Free · <a href={URLS.changelog}>Release notes</a> · <a href={URLS.requirements}>System requirements</a>
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  // Optional: point out the visitor's own platform. The section reads the same without it.
+  (function () {
+    var ua = navigator.userAgent;
+    var os = /iPhone|iPad/.test(ua) ? 'ios' : /Android/.test(ua) ? 'android' : /Mac/.test(ua) ? 'mac' : /Win/.test(ua) ? 'windows' : /Linux/.test(ua) ? 'linux' : '';
+    var card = os && document.querySelector('#download [data-os="' + os + '"]');
+    if (card) card.classList.add('dl--yours');
+  })();
+</script>
+
+<style>
+  .group {
+    margin-top: 56px;
+  }
+
+  .group__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    margin: 0 0 18px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--site-text-2);
+  }
+
+  .group__eyebrow {
+    font: 500 13px/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .dl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .dl {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dl__name {
+    font: 700 24px/1.2 var(--font-display);
+    letter-spacing: -0.03em;
+    color: var(--site-heading);
+  }
+
+  .dl .btn {
+    margin-top: auto;
+    align-self: stretch;
+  }
+
+  .dl .caption {
+    flex: 1;
+  }
+
+  :global(.dl--yours) {
+    border-color: var(--accent) !important;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 50px;
+    border-radius: 10px;
+  }
+
+  .badge img {
+    height: 50px;
+    width: auto;
+  }
+
+  /* Google's artwork carries its own transparent margin; trim it so both badges read the same size. */
+  .badge--play img {
+    height: 74px;
+    margin: -12px -10px;
+  }
+
+  .footnote {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .footnote a {
+    color: var(--site-link);
+    text-underline-offset: 3px;
+    display: inline-block;
+    padding: 12px 2px;
+  }
+</style>

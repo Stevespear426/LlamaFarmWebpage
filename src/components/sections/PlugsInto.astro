@@ -1,0 +1,48 @@
+---
+const tools = ['Claude Code', 'Codex CLI', 'Gemini CLI'];
+---
+
+<section class="plugs" aria-label="Works with">
+  <div class="container plugs__row">
+    <span class="caption plugs__label">PLUGS INTO</span>
+    <ul class="plugs__tools">
+      {tools.map((tool) => <li>{tool}</li>)}
+    </ul>
+    <span class="caption">+ any MCP client</span>
+  </div>
+</section>
+
+<style>
+  .plugs {
+    background: var(--site-band);
+    border-top: 1px solid var(--site-rule);
+    border-bottom: 1px solid var(--site-rule);
+  }
+
+  .plugs__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px 40px;
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .plugs__label {
+    letter-spacing: 0.08em;
+  }
+
+  .plugs__tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: 700 22px/1.2 var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--site-heading);
+  }
+</style>

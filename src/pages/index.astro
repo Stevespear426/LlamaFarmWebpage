@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/sections/Nav.astro';
+import Hero from '../components/sections/Hero.astro';
+import PlugsInto from '../components/sections/PlugsInto.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import EveryDevice from '../components/sections/EveryDevice.astro';
+import InsideAgent from '../components/sections/InsideAgent.astro';
+import Savings from '../components/sections/Savings.astro';
+import Hardware from '../components/sections/Hardware.astro';
+import Teams from '../components/sections/Teams.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import Downloads from '../components/sections/Downloads.astro';
+import Footer from '../components/sections/Footer.astro';
+import { SITE } from '../config';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: SITE.name,
+  description: SITE.description,
+  url: `${SITE.domain}/`,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'macOS, Windows, Linux, iOS, Android',
+  offers: { '@type': 'Offer', name: 'Personal', price: '0', priceCurrency: 'USD' },
+};
+---
+
+<Base jsonLd={jsonLd}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <PlugsInto />
+    <HowItWorks />
+    <EveryDevice />
+    <InsideAgent />
+    <Savings />
+    <Hardware />
+    <Teams />
+    <Pricing />
+    <Downloads />
+  </main>
+  <Footer />
+</Base>

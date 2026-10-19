@@ -1,0 +1,122 @@
+---
+import Icon from '../Icon.astro';
+import ConsoleShot from '../shots/ConsoleShot.astro';
+import { URLS } from '../../config';
+---
+
+<section id="top" class="hero dot-grid" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <a class="news" href={URLS.changelog}>
+      <span class="news__badge">NEW</span>
+      <span>Exact code lookup for Claude Code, Codex and Gemini CLI</span>
+      <Icon name="arrow" size={16} />
+    </a>
+
+    <h1 id="hero-title" class="h1">Put the herd to work<br /><span class="accent">for your AI agents.</span></h1>
+
+    <p class="hero__lead">
+      Llama Farm turns the Macs, phones and tablets you already own into extra compute for your coding agents. They hand
+      the farm the busywork — build logs, file summaries, code lookup — and spend their tokens on the hard parts.
+    </p>
+
+    <div class="btn-row hero__buttons">
+      <a class="btn btn--primary" href="#download"><Icon name="download" />Download free</a>
+      <a class="btn btn--outline" href={URLS.demo}><Icon name="play" />Watch the 2-minute demo</a>
+    </div>
+
+    <p class="caption">Mac, Windows &amp; Linux · iPhone, iPad &amp; Android</p>
+
+    <div class="hero__shot">
+      <ConsoleShot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(56px, 8vw, 96px);
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .news {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    max-width: 100%;
+    padding: 6px 14px 6px 6px;
+    border: 1px solid var(--site-border);
+    border-radius: 999px;
+    background: var(--site-card);
+    color: var(--site-text);
+    font-size: 14px;
+    line-height: 1.35;
+    text-decoration: none;
+    text-align: left;
+  }
+
+  .news:hover {
+    border-color: var(--site-border-strong);
+  }
+
+  .news__badge {
+    flex: none;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--on-gold);
+    font: 500 11px/1.2 var(--font-mono);
+    letter-spacing: 0.08em;
+  }
+
+  .news :global(svg) {
+    flex: none;
+    color: var(--site-text-3);
+  }
+
+  .h1 {
+    margin-top: 28px;
+    text-wrap: balance;
+  }
+
+  .hero__lead {
+    max-width: 660px;
+    margin-top: 24px;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--site-text-2);
+  }
+
+  .hero__buttons {
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  .caption {
+    margin-top: 18px;
+  }
+
+  .hero__shot {
+    width: 100%;
+    max-width: 1180px;
+    margin-top: 56px;
+  }
+
+  @media (max-width: 560px) {
+    .hero__lead {
+      font-size: 18px;
+    }
+
+    .hero__buttons {
+      flex-direction: column;
+      align-self: stretch;
+    }
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import Icon from '../Icon.astro';
+
+const cards = [
+  {
+    icon: 'shield',
+    title: 'Stays on your network',
+    body: 'Jobs run on devices you pair yourself, on your own network. Overflow to Central Fleet happens only when your team turns it on.',
+  },
+  {
+    icon: 'chip',
+    title: 'Built-in models first',
+    body: 'Apple Foundation Models, Gemini Nano and Apple Translation where the device has them. Otherwise the Model manager pulls what fits.',
+  },
+  {
+    icon: 'route',
+    title: 'Routes to the right node',
+    body: "Heavy, standard and light tiers. A node that's struggling gets fewer chores, and one that goes offline gets none.",
+  },
+] as const;
+---
+
+<section class="section" aria-labelledby="hardware-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">On your hardware</p>
+      <h2 id="hardware-title" class="h2">Compute you already paid for.</h2>
+    </div>
+    <ul class="card-grid hw">
+      {
+        cards.map((c) => (
+          <li class="card hw__card">
+            <span class="icon-tile">
+              <Icon name={c.icon} />
+            </span>
+            <h3 class="h3">{c.title}</h3>
+            <p class="body">{c.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hw {
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .hw__card {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+  }
+</style>

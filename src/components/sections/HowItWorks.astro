@@ -1,0 +1,59 @@
+---
+const steps = [
+  {
+    step: '01 · MCP SERVER',
+    title: 'Raise the farmhouse',
+    body: 'Install on an always-on Mac or PC. It hosts the MCP endpoint, routes each task to the right node and runs models itself too.',
+  },
+  {
+    step: '02 · NODES',
+    title: 'Grow the herd',
+    body: 'Open the app on that old iPhone, Pixel or laptop and pair it with a code. Each node only takes jobs that fit its memory.',
+  },
+  {
+    step: '03 · CONNECT AI TOOLS',
+    title: 'Hook up your agents',
+    body: 'One click sets up Claude Code, Codex and Gemini CLI, and keeps their farm setup current when the app updates. No per-repo setup.',
+  },
+];
+---
+
+<section id="how" class="section" aria-labelledby="how-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2 id="how-title" class="h2">About three minutes from download to a working farm.</h2>
+    </div>
+    <ol class="card-grid steps">
+      {
+        steps.map((s) => (
+          <li class="card step">
+            <span class="step__num">{s.step}</span>
+            <h3 class="h3">{s.title}</h3>
+            <p class="body">{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+  }
+
+  .step__num {
+    font: 500 13px/1.4 var(--font-mono);
+    letter-spacing: 0.08em;
+    color: var(--gold);
+  }
+</style>
